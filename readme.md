@@ -136,3 +136,25 @@ Note: For packages that will be used in dev stage (such as linters, testing libr
 18. Update _base.html (hello.jsx will inject react code into a div with the id of root)
 (also update the vite_asset to point to hello.jsx) ?(this will remove index.js from our code, but why?)
 
+
+- Adding TailwindCSS
+19. Install the tailwind vite plugin
+```
+> npm install -D @tailwindcss/vite
+```
+
+20. Add the plugin to vite.config.js
+
+21. Then install tailwind itself
+```
+> npm install tailwindcss
+```
+
+22. Create a base css file in assets/style.css and add tailwind import to it
+(don't know why we're not using assets/js and assets/stylesheets folders)
+
+23. Update vite.config.js by adding another asset input and output
+
+24. Add vite_assest directive to head of base template
+
+25. Add some tailwind utility code to hello.jsx and maybe _base.html

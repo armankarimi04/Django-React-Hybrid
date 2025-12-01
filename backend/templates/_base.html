@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% vite_hmr_client %}
+    {% vite_asset 'assets/style.css' %}
 </head>
-<body>
+<body class="bg-emerald-700 text-white">
     {% block content %}
     {% endblock content %}
     <div id="root"></div>
+    <p class="text-center text-white">
+        (and TailwindCSS)
+    </p>
     {% vite_asset 'assets/hello.jsx' %}
 </body>
 </html>
