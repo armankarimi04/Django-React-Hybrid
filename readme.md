@@ -55,3 +55,24 @@ The default is a folder in project root, named static/.
 (So i added this file to gitignore)
 
 so here is the basic frontend flow assets -> bundle up -> static
+
+For the beginning, the entire front-end code will be bundled in one large file called index-bundle.js
+
+3. Initialize a new npm project in django root dir
+```
+> npm init -y
+> npm install -D vite
+```
+
+4. Add index.js file to assets/
+This file will create a div component and add it to the body of our template (probably _base.html)
+
+5. Add vite.config.js to root/ (root/ is backend folder)
+
+6. Add a npm script to run vite, to package.json
+7. run 'npm run build' to check if build works ok
+You should see a index-bundle.js in static/js/
+
+8. Now we need to link the bundled file to our django template (standard django, make sure you're properly serving template and static files)
+(i will add it to _base.html, and add an index.html and render it)
+(also i added STATICFILES_DIRS to settings, without it, index-bundle.js may not be served)
