@@ -17,19 +17,14 @@ def index(request):
     return render(request, "api/index.html")
 
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class EmployeeView(TemplateView):
     # our hybrid template, shown above
-    template_name = 'api/employee_home.html'
+    template_name = 'api/index.html'
 
     def get_context_data(self, **kwargs):
         # passing the department choices to the template in the context
-        return {
-            'department_choices': [{
-                'id': c[0],
-                'name': c[1]
-            } for c in Employee.DEPARTMENT_CHOICES],
-        }
+        return {'department_choices': [{ 'id': c[0], 'name': c[1]} for c in Employee.DEPARTMENT_CHOICES],}
         
         
 @require_POST

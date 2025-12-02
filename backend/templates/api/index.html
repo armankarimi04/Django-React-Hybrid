@@ -3,4 +3,18 @@
 {% block content %}
     <h3>Api Index</h3>
     <div id="root"></div>
+    <div>
+        <a href="{% url 'api:employees_list' %}">Employees List -></a>
+        {% if department_choices %}
+            <h3 class="text-green-400">Department Choices EXIST</h3>
+            {{ department_choices|json_script:'department-choices-id'}}
+            <h6 class="text-xs">They have been loaded in browser console.</h6>
+            <script>
+                const DEPARTMENT_CHOICES = JSON.parse(document.getElementById('department-choices-id').textContent);
+                console.log(DEPARTMENT_CHOICES);
+            </script>
+        {% else %}
+            <h3 class="text-red-400">Department Choices DO NOT EXIST</h3>
+        {% endif %}
+    </div>
 {% endblock content %}
