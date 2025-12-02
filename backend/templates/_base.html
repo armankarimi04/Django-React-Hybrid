@@ -7,14 +7,10 @@
     <title>Document</title>
     {% vite_hmr_client %}
     {% vite_asset 'assets/style.css' %}
+    {% vite_asset 'assets/hello.jsx' %}
 </head>
-<body class="bg-emerald-700 text-white">
+<body class="m-4">
     {% block content %}
     {% endblock content %}
-    <div id="root"></div>
-    <p class="text-center text-white">
-        (and TailwindCSS)
-    </p>
-    {% vite_asset 'assets/hello.jsx' %}
 </body>
 </html>

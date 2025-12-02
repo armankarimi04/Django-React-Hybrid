@@ -125,8 +125,18 @@ STATIC_ROOT = BASE_DIR / 'static' / 'dist' # only required for prod (not sure, b
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Security settings
+# CSRF_COOKIE_SAMESITE = 'Strict'
+# SESSION_COOKIE_SAMESITE = 'Strict'
+# CSRF_COOKIE_HTTPONLY = False # in prod, set True
+# SESSION_COOKIE_HTTPONLY = True # in prod, set True
+# by setting csrf_cookie_httponly to false
+# and session_cookie_httponly to true
+# will block the client side js from accessing csrf and session cookies
+
 
 DJANGO_VITE = {
   "default": {

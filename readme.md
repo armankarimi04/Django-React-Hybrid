@@ -158,3 +158,19 @@ Note: For packages that will be used in dev stage (such as linters, testing libr
 24. Add vite_assest directive to head of base template
 
 25. Add some tailwind utility code to hello.jsx and maybe _base.html
+
+
+- Building React pages for Django App
+We will develop a CRUD app where any user can signup and manage their own employees
+
+Breaking down the architecture:
+We'll be using normal django views, each view will render a normal django template.
+These templates will be just a skeleton for for compiled react components.
+React components will be created and managed separately and injected into django templates.
+
+IMPORTANT:
+Since we're serving react pages directly from django, there is no need for handling of CORS and 3rd-party authentication frameworks
+
+VERY IMPORTANT:
+the vite_asset template directive must point to assets (entry files)
+django_vite will automatically decide which files to server, entry assets or build files by checking DEBUG and manifest.json
