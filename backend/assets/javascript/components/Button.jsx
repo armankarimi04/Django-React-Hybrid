@@ -1,6 +1,6 @@
 
 export default function MyButton() {
   return (
-    <button>HUGE BUTTON</button>
+    <button className="text-green-500">HUGE BUTTON</button>
   );
 }

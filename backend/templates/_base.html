@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% vite_hmr_client %}
-    {% vite_asset 'assets/style.css' %}
+    {% vite_asset 'assets/style/style.css' %}
     <script type="module">
         import RefreshRuntime from 'http://localhost:5173/static/@react-refresh'
         RefreshRuntime.injectIntoGlobalHook(window)
@@ -19,5 +19,6 @@
     {% block content %}
     {% endblock content %}
     {% vite_asset 'assets/main.jsx' %}
+    {% vite_asset 'assets/index.js' %}
 </body>
 </html>
