@@ -187,3 +187,85 @@ RESULT: I was able to fix this by a script tag that will directly import it from
     window.__vite_plugin_react_preamble_installed__ = true
 </script>
 ```
+
+(Part 4 and 5 skipped for now)
+
+#### Part 6 of 6
+Benefits of using API Standards:
+1. They make it easy to document yor API
+2. They provide tooling that let others explore and test against your APIs
+3. They help automatically generate API Code for you
+
+OpenAPI Specification (OAS)<br>
+Defines a standard, language agnostic interface to HTTP APIs which allows both humans and computers
+to discover, understand, and interact with the API.<br>
+
+- An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.<br>
+
+1. We'll use a package called drf-spectacular to add OpenAPI standard to our project<br>
+```
+> pip install drf-spectacular
+```
+
+2. Add the settings (and some metadata, optional but recommended by drf-spectacular)
+
+IMPORTANT
+- Some have may have limited to access to internet and as such are unable to retrieve the necessary UI files for Swagger and Redoc.<br>
+drf-spectacular provides these files as static files as a separate optional package, called drf-spectacular-sidecar:
+```
+> pip install drf-spectacular[sidecar]
+```
+- Settings:
+```
+INSTALLED_APPS = [
+    # ALL YOUR APPS
+    'drf_spectacular',
+    'drf_spectacular_sidecar',  # required for Django collectstatic discovery
+]
+SPECTACULAR_SETTINGS = {
+    'SWAGGER_UI_DIST': 'SIDECAR',  # shorthand to use the sidecar instead
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
+    # OTHER SETTINGS
+}
+```
+
+3. Generate OpenAPI schema file:
+```
+> python manage.py spectacular --file schema.yml
+```
+
+4. Add a url to expose the API schema to root urls.py
+
+5. Add urls to include Redoc and Swagger UI tools to automatically generate documentaiton
+
+- Creating API Clients using OpenAPI Generator
+```
+> npm install @openapitools/openapi-generator-cli -g
+```
+(-g is for globally, installs the package globally on your system)
+
+(java is required)
+(i installed java using scoop, but it installed a very old version of it)
+(minimum version for openapi-generator-cli as of writing this, is 17)
+(then i heard about something called adoptium and temurin)
+(apparently temurin is a free distribution of java)
+
+- to check your java version:
+```
+> java -version
+```
+
+6. After installing required java version (this uses typescript, tutorial uses this):
+```
+openapi-generator-cli generate -i schema.yml -g typescript-fetch -o ./assets/src/api/
+```
+
+7. (This is javascript version)
+```
+openapi-generator-cli generate -i schema.yml -g javascript -o ./assets/src/api/
+```
+
+- the -i flag, tells it where to find the schema.yml file
+- the -g typescript-fetch tells it to genereate client for typescript and fetch library (which i changed to javascript)
+- the -o flag tells it where to save the client files

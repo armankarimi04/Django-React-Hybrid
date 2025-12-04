@@ -17,9 +17,7 @@
 </head>
 <body class="m-4">
     {% if user.is_authenticated %}
-        <script>
-            console.log("auth ok");
-        </script>
+        User is authenticated: <p class="text-md">{{ user.username }}</p>
     {% endif %}
     <a href="{% url 'api:index' %}">index</a>
     {% block content %}
